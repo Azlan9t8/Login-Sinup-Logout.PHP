@@ -13,7 +13,7 @@
 <!-- Contact -->
 <div class="container mt-5">
   <h1 class="mt-3 mb-2 text-center">CONTACT FORM</h1>
-<form class="row g-3" method="POST" action="#">
+<form class="row g-3" method="POST" action="#" enctype="multipart/form-data">
   <div class="col-md-6">
     <label  class="form-label">Name</label>
     <input type="text" class="form-control"  placeholder="Enter Your Frist Name" name="fname">
@@ -38,9 +38,14 @@
     <label  class="form-label">Phone Number</label>
     <input type="number" class="form-control" name="pnumber" placeholder="Enter Your phone Number">
   </div>
+  <div class="col-md-6">
   <label  class="form-label">Password</label>
     <input type="password" class="form-control" name="pass" placeholder="Enter Your password">
-  </div><br>
+  </div>
+  <div class="col-md-6">
+  <label  class="form-label">Picture</label>
+    <input type="file" class="form-control" name="pic" placeholder="Enter Your password">
+  </div>
   <div class="col-12">
     <button type="submit" name="submit" class="btn btn-primary">Submit</button>
   </div>
@@ -61,9 +66,14 @@ $address = $_POST["address"];
 $city = $_POST["city"];
 $phone = $_POST["pnumber"];
 $pass = $_POST["pass"];
+$picname =$_FILES["pic"]["name"];
+$tmp_name =$_FILES["pic"]["tmp_name"];
+
+$path ="./picture/".$picname;
+move_uploaded_file($tmp_name,$path);
 
 $conn = mysqli_connect("localhost","root","","contact");
-$query = "INSERT INTO `users`(`id`, `Name`, `Last Name`, `Email`, `Address`, `City`, `Phone`, `Password`) VALUES (Null,'$fristname','$lastname','$email','$address','$city','$phone','$pass')";
+$query = "INSERT INTO `users`(`id`, `Name`, `Last Name`, `Email`, `Address`, `City`, `Phone`, `Password`, `Picture`) VALUES (Null,'$fristname','$lastname','$email','$address','$city','$phone','$pass','$path')";
 
 $result = mysqli_query($conn,$query);
 

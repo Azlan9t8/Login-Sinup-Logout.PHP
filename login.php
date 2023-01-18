@@ -25,7 +25,8 @@
     <label>Password</label>
     <input name="pass" type="password" class="form-control"  placeholder="Enter your Password">
   </div><br>
-  <button name="submit" type="submit" class="btn btn-primary">Log in</button>
+  <button name="submit" type="submit" class="btn btn-success">Log in</button><br><br>
+<a href="insert.php"><button class="btn btn-info">Sin up</button></a>
 </form>
 </div>
 </div>
@@ -38,12 +39,14 @@ if (isset($_POST["submit"])) {
     
     $email = $_POST["email"];
     $password = $_POST["pass"];
-    $qu = "SELECT * FROM `users` WHERE `Email`='$email',`Password`='$password',";
+    $qu = "SELECT * FROM `users` WHERE `Email`='$email' && `Password`='$password' ";
 
     $result = mysqli_query($conn,$qu);
 
     if ($result) {
         header('Location:index.php');
+    }else{
+      header('Location:login.php');
     }
 
 

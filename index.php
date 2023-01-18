@@ -21,6 +21,7 @@
     <th>City</th>
     <th>Phone</th>
     <th>Password</th>
+    <th>Picture</th>
     <th>Update</th>
     <th>Remove</th>
 </tr>
@@ -45,6 +46,7 @@ while($data =mysqli_fetch_array($res)){
   <td><?php echo $data[5] ?></td>
   <td><?php echo $data[6] ?></td>
   <td><?php echo $data[7] ?></td>
+  <td><img src="<?php echo $data[8] ?>" width="100px"></td>
   <td><a href=update.php?id="<?php echo $data[0] ?>"><button class="btn btn-info">Update</button></a></td>
   <td><a href=remove.php?myid="<?php echo $data[0] ?>"><button class="btn btn-danger">Remove</button></a></td>
   
