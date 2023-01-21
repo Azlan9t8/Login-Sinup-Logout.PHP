@@ -1,3 +1,10 @@
+<?php
+session_start();
+if ($_SESSION['name'] != "") {
+  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +16,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
+  <h1><?php echo  "Wellcome"."  ".$_SESSION['name']; ?></h1>
+  <a href="logout.php"><button class="btn btn-secondary mb-4" style="  float: right;">Log Out</button></a>
   <div class="container mt-5">
 <table class="table table-bordered">
 
@@ -63,6 +72,10 @@ while($data =mysqli_fetch_array($res)){
 </div>
 <br><br>
 <a href="insert.php">Add information</a>
-
+<?php
+}else{
+  header('Location: login.php');
+}
+?>
 </body>
 </html>

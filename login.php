@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  error_reporting(0);
+  if($_SESSION['name'] ==""){
+
+  
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +36,8 @@
     <input name="pass" type="password" class="form-control"  placeholder="Enter your Password">
   </div><br>
   <button name="submit" type="submit" class="btn btn-success">Log in</button><br><br>
-<a href="insert.php"><button class="btn btn-info">Sin up</button></a>
 </form>
+<a href="insert.php"><button name="submit"  class="btn btn-info">Sin Up</button><br></a>
 </div>
 </div>
 
@@ -43,17 +53,25 @@ if (isset($_POST["submit"])) {
 
     $result = mysqli_query($conn,$qu);
 
-    if ($result) {
-        header('Location:index.php');
-    }else{
-      header('Location:login.php');
-    }
+ if(mysqli_num_rows($result)){
+ 
+ $data =mysqli_fetch_array($result);
+
+  $_SESSION['name'] =$data[1];
+  header('Location: index.php');
+ }else{
+  header('Loaction: login.php');
+ }
 
 
 }
 
 ?>
-
+<?php
+}else{
+  header('Location:index.php');
+}
+?>
 
 
 </body>
