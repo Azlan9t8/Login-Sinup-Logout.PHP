@@ -58,6 +58,7 @@ if (isset($_POST["submit"])) {
  $data =mysqli_fetch_array($result);
 
   $_SESSION['name'] =$data[1];
+  $_SESSION['usertype'] =$data[9];
   header('Location: index.php');
  }else{
   header('Loaction: login.php');

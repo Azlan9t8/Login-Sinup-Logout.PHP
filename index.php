@@ -19,7 +19,7 @@ if ($_SESSION['name'] != "") {
   <h1><?php echo  "Wellcome"."  ".$_SESSION['name']; ?></h1>
   <a href="logout.php"><button class="btn btn-secondary mb-4" style="  float: right;">Log Out</button></a>
   <div class="container mt-5">
-<table class="table table-bordered">
+<table class="table table-bordered table-dark table-striped">
 
   <tr>
     <th>ID</th>
@@ -31,9 +31,15 @@ if ($_SESSION['name'] != "") {
     <th>Phone</th>
     <th>Password</th>
     <th>Picture</th>
+    <?php
+    if ($_SESSION['usertype']==0) {   
+    ?>
     <th>Update</th>
     <th>Remove</th>
 </tr>
+<?php
+}
+?>
 <?php
 
 $conn = mysqli_connect("localhost","root","","contact");
@@ -56,10 +62,17 @@ while($data =mysqli_fetch_array($res)){
   <td><?php echo $data[6] ?></td>
   <td><?php echo $data[7] ?></td>
   <td><img src="<?php echo $data[8] ?>" width="100px"></td>
+  <?php
+  if($_SESSION['usertype'] ==0){
+
+  
+  ?>
   <td><a href=update.php?id="<?php echo $data[0] ?>"><button class="btn btn-info">Update</button></a></td>
   <td><a href=remove.php?myid="<?php echo $data[0] ?>"><button class="btn btn-danger">Remove</button></a></td>
   
-
+<?php
+}
+?>
 </tr>
 
 <?php
